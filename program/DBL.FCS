@@ -1,0 +1,17 @@
+
+CC5X Version 3.1C, Copyright (c) B Knudsen Data.
+* FUNCTION CALL STRUCTURE
+
+F: int_server             :#0  : p0
+    SPWMTAB               : #1  : p0 -> p0
+
+F: SPWMTAB                :#1  : p0 <- p0 
+
+F: main                   :#0  : p0
+
+
+ L1  int_server
+ L2    SPWMTAB
+
+ L0  main
+

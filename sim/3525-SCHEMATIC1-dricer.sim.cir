@@ -1,0 +1,21 @@
+** circuit file for profile: dricer 
+
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT PROFILES
+
+*Libraries: 
+* Local Libraries :
+* From [PSPICE NETLIST] section of pspice91.ini file:
+.lib "D:\my_lib\orcad.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 50us 0 
+.OPTIONS ABSTOL= 100.0p
+.OPTIONS VNTOL= 10.0u
+.PROBE 
+.INC "3525-SCHEMATIC1.net" 
+
+.INC "3525-SCHEMATIC1.als"
+
+
+.END

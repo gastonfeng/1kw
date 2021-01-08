@@ -1,0 +1,26 @@
+CC5X Version 3.1C, Copyright (c) B Knudsen Data, Norway 1992-2001
+ --> FREE edition, 8-16 bit int, 24 bit float, 1k code, reduced optim.
+D:\PRODUCT\1KW\PROGRAM\MAIN.C:
+  6. Jun 2001   0:50
+ Chip = 16C73A
+ RAM: 00h : -------- -------- -------- --------
+ RAM: 20h : -===4.** ******** ******** ********
+ RAM: 40h : ******** ******** ******** ********
+ RAM: 60h : ******** ******** ******** ********
+ RAM: 80h : -------- -------- -------- --------
+ RAM: A0h : -******* ******** ******** ********
+ RAM: C0h : ******** ******** ******** ********
+ RAM: E0h : ******** ******** ******** ********
+RAM usage: 7 bytes (3 local), 185 bytes free
+ File 'MAIN.fcs'
+ Optimizing - removed 0 instructions (-0 %)
+ File 'MAIN.var'
+ File 'MAIN.asm'
+ File 'MAIN.lst'
+ File 'MAIN.cod'
+ File 'MAIN.occ'
+ Codepage 0 has  192 word(s) :   9 %
+ Codepage 1 has    0 word(s) :   0 %
+ File 'MAIN.hex'
+Total of 192 code words (4 %)
+ * Estimated CODE SIZE of licensed edition: 177 code words (-15)

@@ -1,0 +1,121 @@
+@OrCAD Simulation Server Version: 1.0
+
+@Settings: 0 1
+@General:
+ProfileName= "dricer" 
+ProfileFile= "3525-schematic1-dricer.sim" 
+DesignFile= "3525.dsn" 0 
+ProjectFile= "3525.opj" 
+NetlistFile= "3525-schematic1-dricer.sim.cir" 
+RootSchematics= "SCHEMATIC1" 
+DataFile= "3525-SCHEMATIC1-dricer.dat" 
+OutFile= "3525-SCHEMATIC1-dricer.out" 
+Notes=
+@#$BEGINNOTES
+@#$ENDNOTES
+@End General
+@Analysis: 0 1
++0 0 0 
++0 "50us" 
++1 "" 
++2 "0" 
++3 "" 
++4 "" 
++5 "" 
++6 "" 
+@End Analysis
+@Analysis: 1 0
++2 0
++0 "" 
++1 "" 
++2 "" 
++3 "" 
++4 "" 
++5 "" 
+@End Analysis
+@Analysis: 2 0
++0 0
++0 "" 
++1 "" 
++2 "" 
++3 "" 
++4 "" 
++5 "" 
++6 "" 
++7 "" 
+@End Analysis
+@Analysis: 3 0
++0 0 0
++0 "" 
++1 "" 
++2 "" 
+@End Analysis
+@Analysis: 4 0
++0 0 0 0 0 0 0 0 
++0 "" 
++1 "" 
++2 "" 
++3 "" 
++4 "" 
++5 "" 
++6 "" 
++7 "" 
+@End Analysis
+@Analysis: 5 0
++0 0
++0 "" 
++1 "" 
++2 "" 
++3 "" 
++4 "" 
++5 "" 
++6 "" 
++7 "" 
+@End Analysis
+@Analysis: 6 0
++1 
++0 "" 
+@End Analysis
+@Analysis: 7 0
++0 0
++0 "" 
++1 "" 
++2 "" 
++3 "" 
++4 "" 
++5 "" 
+@End Analysis
+@Analysis: 8 0
++0 
++0 "" 
++1 "" 
++2 "" 
++3 "" 
++4 "" 
++5 "" 
+@End Analysis
+@Analysis: 9 0
++0 "" 
+@End Analysis
+@Analysis: 10 0
++0 0
++0 "" 
++1 "" 
++2 "" 
++3 "" 
++4 "" 
++5 "" 
++6 "" 
++7 "" 
+@End Analysis
+@Analysis: 11 1
++ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
++ ABSTOL "100.0p"
++ VNTOL "10.0u"
+@End Analysis
+@Analysis: 12 0
++0 0
+@End Analysis
+@Analysis: 13 1
++0 1 1 0
+@End Analysis

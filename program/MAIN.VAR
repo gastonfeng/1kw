@@ -1,0 +1,177 @@
+
+CC5X Version 3.1C, Copyright (c) B Knudsen Data.
+* VARIABLE LIST FILE
+Source 'D:\PRODUCT\1KW\PROGRAM\MAIN.C'
+Chip = 16C73A
+
+=== Sorted by address ===
+
+   [-] 0x000   :  0:  INDF
+   [0] 0x001   :  0:  TMR0
+   [-] 0x002   :  2:  PCL
+   [-] 0x003   :  2:  STATUS
+   [-] 0x003.0 :  0:  Carry
+   [-] 0x003.1 :  0:  DC
+   [-] 0x003.2 :  4:  Zero_
+   [-] 0x003.3 :  0:  PD
+   [-] 0x003.4 :  0:  TO
+   [-] 0x003.5 : 26:  RP0
+   [-] 0x003.6 :  0:  RP1
+   [-] 0x003.7 :  0:  IRP
+   [-] 0x004   :  0:  FSR
+   [0] 0x005   :  0:  PORTA
+   [0] 0x006   :  0:  PORTB
+ P [0] 0x006.4 :  0:  LED_POWER
+ P [0] 0x006.5 :  0:  LED_LVD
+ P [0] 0x006.6 :  0:  LED_PROTECT
+ P [0] 0x006.7 :  0:  LED_WORK
+ P [0] 0x007   :  1:  PORTC
+ P [0] 0x007.0 :  2:  PWMHR
+ P [0] 0x007.1 :  0:  PWMLL
+ P [0] 0x007.2 :  0:  PWMLR
+ P [0] 0x007.3 :  2:  PWMHL
+   [-] 0x00A   :  3:  PCLATH
+   [-] 0x00A.3 :  0:  PA0
+   [-] 0x00A.4 :  0:  PA1
+   [-] 0x00B   :  0:  INTCON
+   [-] 0x00B.0 :  0:  RBIF
+   [-] 0x00B.1 :  0:  INTF
+   [-] 0x00B.2 :  0:  T0IF
+   [-] 0x00B.3 :  0:  RBIE
+   [-] 0x00B.4 :  0:  INTE
+   [-] 0x00B.5 :  0:  T0IE
+ P [-] 0x00B.6 :  1:  PEIE
+   [-] 0x00B.7 :  1:  GIE
+ P [0] 0x00C   :  0:  PIR1
+ P [0] 0x00C.0 :  0:  TMR1IF
+ P [0] 0x00C.1 :  2:  TMR2IF
+ P [0] 0x00C.2 :  0:  CCP1IF
+ P [0] 0x00C.3 :  0:  SSPIF
+ P [0] 0x00C.4 :  0:  TXIF
+ P [0] 0x00C.5 :  0:  RCIF
+ P [0] 0x00C.6 :  0:  ADIF
+ P [0] 0x00D   :  0:  PIR2
+ P [0] 0x00D.0 :  0:  CCP2IF
+ P [0] 0x00E   :  0:  TMR1L
+ P [0] 0x00F   :  0:  TMR1H
+ P [0] 0x010   :  0:  T1CON
+ P [0] 0x010.0 :  0:  TMR1ON
+ P [0] 0x010.1 :  0:  TMR1CS
+ P [0] 0x010.2 :  0:  T1SYNC_
+ P [0] 0x010.3 :  0:  T1OSCEN
+ P [0] 0x010.4 :  0:  T1CKPS0
+ P [0] 0x010.5 :  0:  T1CKPS1
+ P [0] 0x011   :  0:  TMR2
+ P [0] 0x012   :  1:  T2CON
+ P [0] 0x012.0 :  0:  T2CKPS0
+ P [0] 0x012.1 :  0:  T2CKPS1
+ P [0] 0x012.2 :  0:  TMR2ON
+ P [0] 0x012.3 :  0:  TOUTPS0
+ P [0] 0x012.4 :  0:  TOUTPS1
+ P [0] 0x012.5 :  0:  TOUTPS2
+ P [0] 0x012.6 :  0:  TOUTPS3
+ P [0] 0x013   :  0:  SSPBUF
+ P [0] 0x014   :  0:  SSPCON
+ P [0] 0x014.0 :  0:  SSPM0
+ P [0] 0x014.1 :  0:  SSPM1
+ P [0] 0x014.2 :  0:  SSPM2
+ P [0] 0x014.3 :  0:  SSPM3
+ P [0] 0x014.4 :  0:  CKP
+ P [0] 0x014.5 :  0:  SSPEN
+ P [0] 0x014.6 :  0:  SSPOV
+ P [0] 0x014.7 :  0:  WCOL
+ P [0] 0x015   :  2:  CCPR1L
+ P [0] 0x016   :  0:  CCPR1H
+ P [0] 0x017   :  2:  CCP1CON
+ P [0] 0x017.0 :  0:  CCP1M0
+ P [0] 0x017.1 :  0:  CCP1M1
+ P [0] 0x017.2 :  0:  CCP1M2
+ P [0] 0x017.3 :  0:  CCP1M3
+ P [0] 0x017.4 :  0:  CCP1Y
+ P [0] 0x017.5 :  0:  CCP1X
+ P [0] 0x018   :  0:  RCSTA
+ P [0] 0x018.0 :  0:  RX9D
+ P [0] 0x018.1 :  0:  OERR
+ P [0] 0x018.2 :  0:  FERR
+ P [0] 0x018.4 :  0:  CREN
+ P [0] 0x018.5 :  0:  SREN
+ P [0] 0x018.6 :  0:  RX9
+ P [0] 0x018.7 :  0:  SPEN
+ P [0] 0x019   :  0:  TXREG
+ P [0] 0x01A   :  0:  RCREG
+ P [0] 0x01B   :  2:  CCPR2L
+ P [0] 0x01C   :  0:  CCPR2H
+ P [0] 0x01D   :  3:  CCP2CON
+ P [0] 0x01D.0 :  0:  CCP2M0
+ P [0] 0x01D.1 :  0:  CCP2M1
+ P [0] 0x01D.2 :  0:  CCP2M2
+ P [0] 0x01D.3 :  0:  CCP2M3
+ P [0] 0x01D.4 :  0:  CCP2Y
+ P [0] 0x01D.5 :  0:  CCP2X
+ P [0] 0x01E   :  0:  ADRES
+ P [0] 0x01F   :  0:  ADCON0
+ P [0] 0x01F.0 :  0:  ADON
+ P [0] 0x01F.2 :  0:  GO
+ P [0] 0x01F.3 :  0:  CHS0
+ P [0] 0x01F.4 :  0:  CHS1
+ P [0] 0x01F.5 :  0:  CHS2
+ P [0] 0x01F.6 :  0:  ADCS0
+ P [0] 0x01F.7 :  0:  ADCS1
+ P [0] 0x020   :  3:  s1_save
+ L [0] 0x021   :  2:  s2
+ L [0] 0x022   :  2:  s3
+ L [0] 0x023   :  1:  tabindex
+ L [0] 0x023   :  1:  tabindex_2
+ G [0] 0x024.0 :  1:  intflag
+ G [0] 0x024.1 :  4:  neg
+ G [0] 0x024.2 :  7:  front
+ G [0] 0x024.3 :  6:  change
+ G [0] 0x025   : 12:  index
+   [1] 0x081   :  0:  OPTION
+   [1] 0x081.0 :  0:  PS0
+   [1] 0x081.1 :  0:  PS1
+   [1] 0x081.2 :  0:  PS2
+   [1] 0x081.3 :  0:  PSA
+   [1] 0x081.4 :  0:  T0SE
+   [1] 0x081.5 :  0:  T0CS
+   [1] 0x081.6 :  0:  INTEDG
+   [1] 0x081.7 :  0:  RBPU_
+   [1] 0x085   :  0:  TRISA
+   [1] 0x086   :  1:  TRISB
+ P [1] 0x087   :  1:  TRISC
+ P [1] 0x08C   :  0:  PIE1
+ P [1] 0x08C.0 :  0:  TMR1IE
+ P [1] 0x08C.1 :  1:  TMR2IE
+ P [1] 0x08C.2 :  0:  CCP1IE
+ P [1] 0x08C.3 :  0:  SSPIE
+ P [1] 0x08C.4 :  0:  TXIE
+ P [1] 0x08C.5 :  0:  RCIE
+ P [1] 0x08C.6 :  0:  ADIE
+ P [1] 0x08D   :  0:  PIE2
+ P [1] 0x08D.0 :  0:  CCP2IE
+ P [1] 0x08E   :  0:  PCON
+ P [1] 0x08E.0 :  0:  BOR_
+ P [1] 0x08E.1 :  0:  POR_
+ P [1] 0x092   :  2:  PR2
+ P [1] 0x093   :  0:  SSPADD
+ P [1] 0x094   :  0:  SSPSTAT
+ P [1] 0x094.0 :  0:  BF
+ P [1] 0x094.1 :  0:  UA
+ P [1] 0x094.2 :  0:  RW_
+ P [1] 0x094.3 :  0:  S
+ P [1] 0x094.4 :  0:  P
+ P [1] 0x094.5 :  0:  DA_
+ P [1] 0x098   :  0:  TXSTA
+ P [1] 0x098.0 :  0:  TX9D
+ P [1] 0x098.1 :  0:  TRMT
+ P [1] 0x098.2 :  0:  BRGH
+ P [1] 0x098.4 :  0:  SYNC
+ P [1] 0x098.5 :  0:  TXEN
+ P [1] 0x098.6 :  0:  TX9
+ P [1] 0x098.7 :  0:  CSRC
+ P [1] 0x099   :  0:  SPBRG
+ P [1] 0x09F   :  0:  ADCON1
+ P [1] 0x09F.0 :  0:  PCFG0
+ P [1] 0x09F.1 :  0:  PCFG1
+ P [1] 0x09F.2 :  0:  PCFG2
+ P [1] 0x0A0   :  0:  s1_savX

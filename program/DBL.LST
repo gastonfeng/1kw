@@ -1,0 +1,693 @@
+CC5X Version 3.1C,   File: D:\PRODUCT\1KW\PROGRAM\DBL.C 21. Jun 2001  17:35   Page 1
+
+ADDR CODE  LINE SOURCE
+
+           0001 
+           0002 ; CC5X Version 3.1C, Copyright (c) B Knudsen Data
+           0003 ; C compiler for the PICmicro family
+           0004 ; ************  21. Jun 2001  17:35  *************
+           0005 
+           0006 	processor  16C73A
+           0007 	radix  DEC
+           0008 
+     0002  0009 PCL         EQU   0x02
+     0003  0010 STATUS      EQU   0x03
+     0086  0011 TRISB       EQU   0x86
+     000A  0012 PCLATH      EQU   0x0A
+     0000  0013 Carry       EQU   0
+     0002  0014 Zero_       EQU   2
+     0005  0015 RP0         EQU   5
+     0007  0016 GIE         EQU   7
+     0007  0017 PORTC       EQU   0x07
+     0012  0018 T2CON       EQU   0x12
+     0015  0019 CCPR1L      EQU   0x15
+     0017  0020 CCP1CON     EQU   0x17
+     001B  0021 CCPR2L      EQU   0x1B
+     001D  0022 CCP2CON     EQU   0x1D
+     001E  0023 ADRES       EQU   0x1E
+     001F  0024 ADCON0      EQU   0x1F
+     0087  0025 TRISC       EQU   0x87
+     0092  0026 PR2         EQU   0x92
+     009F  0027 ADCON1      EQU   0x9F
+     0006  0028 PEIE        EQU   6
+     0001  0029 TMR2IF      EQU   1
+     0002  0030 GO          EQU   2
+     0001  0031 TMR2IE      EQU   1
+     0006  0032 ADIE        EQU   6
+     0028  0033 index       EQU   0x28
+     0004  0034 LED_POWER   EQU   4
+     0005  0035 LED_LVD     EQU   5
+     0006  0036 LED_PROTECT EQU   6
+     0007  0037 LED_WORK    EQU   7
+     0021  0038 pwmvalue    EQU   0x21
+     0020  0039 s1_save     EQU   0x20
+     0022  0040 s2          EQU   0x22
+     0023  0041 s3          EQU   0x23
+     0024  0042 tabindex    EQU   0x24
+     0025  0043 sum         EQU   0x25
+     0027  0044 i           EQU   0x27
+           0045 
+0000 28BE  0046 	GOTO main
+           0047 
+           0048   ; FILE D:\PRODUCT\1KW\PROGRAM\DBL.C
+           0049 			;/**********************************************
+           0050 			;*	Filename:	main.c
+           0051 			;*	Project:	2k1.pjt
+           0052 			;*	Product name:	1kW sin waveform inverter
+           0053 			;***********************************************
+           0054 			;*
+           0055 			;*	Author:		Feng Jiantao
+           0056 			;*	Date:		2001.01.22
+           0057 			;*	Compiled Using CC5Xfree package
+           0058 			;*
+           0059 			;**********************************************/
+           0060 			;
+CC5X Version 3.1C,   File: D:\PRODUCT\1KW\PROGRAM\DBL.C 21. Jun 2001  17:35   Page 2
+
+ADDR CODE  LINE SOURCE
+
+           0061 			;#include <16C73A.H>
+           0062 			;#include <int16cxx.H>
+           0063 			;
+           0064 			;#define SPWMCOUNT 150
+           0065 			;
+           0066 			;#define LVD	200
+           0067 			;#define PRESET	200
+           0068 			;
+           0069 			;unsigned char index;
+           0070 			;
+           0071 			;#pragma bit OUTHR @ 7.0
+           0072 			;#pragma bit PWM2 @ 7.1		//CCP2
+           0073 			;#pragma bit PWM1 @ 7.2		//CCP1
+           0074 			;#pragma bit OUTHL @ 7.3
+           0075 			;
+           0076 			;#pragma bit LED_POWER	@  6.4
+           0077 			;#pragma bit LED_LVD	@ 6.5
+           0078 			;#pragma bit LED_PROTECT	@ 6.6
+           0079 			;#pragma bit LED_WORK	@ 6.7
+           0080 			;
+           0081 			;unsigned char SPWMTAB(unsigned char tabindex);
+           0082 			;
+           0083 			;#pragma origin = 4
+     0000  0084 	ORG 0x0004
+           0085 			;
+           0086 			;interrupt int_server( void)
+           0087 			;{
+           0088 int_server
+           0089 			;	unsigned char pwmvalue;
+           0090 			;    	int_save_registers    // W, STATUS (and PCLATH)
+0004 00A0  0091 	MOVWF s1_save
+0005 0E03  0092 	SWAPF STATUS,W
+0006 1283  0093 	BCF   0x03,RP0
+0007 00A2  0094 	MOVWF s2
+0008 080A  0095 	MOVF  PCLATH,W
+0009 00A3  0096 	MOVWF s3
+000A 018A  0097 	CLRF  PCLATH
+           0098 			;	if(TMR2IF){
+000B 1C8C  0099 	BTFSS 0x0C,TMR2IF
+000C 281D  0100 	GOTO  m001
+           0101 			;		pwmvalue=SPWMTAB(index);
+000D 0828  0102 	MOVF  index,W
+000E 2025  0103 	CALL  SPWMTAB
+000F 1283  0104 	BCF   0x03,RP0
+0010 00A1  0105 	MOVWF pwmvalue
+           0106 			;		CCPR1L=pwmvalue+1;
+0011 0A21  0107 	INCF  pwmvalue,W
+0012 0095  0108 	MOVWF CCPR1L
+           0109 			;		CCPR2L=pwmvalue+2;
+0013 3002  0110 	MOVLW .2
+0014 0721  0111 	ADDWF pwmvalue,W
+0015 009B  0112 	MOVWF CCPR2L
+           0113 			;		index++;
+0016 0AA8  0114 	INCF  index,1
+           0115 			;		if(index==SPWMCOUNT){
+0017 0828  0116 	MOVF  index,W
+0018 3A96  0117 	XORLW .150
+0019 1903  0118 	BTFSC 0x03,Zero_
+           0119 			;			index=0;
+001A 01A8  0120 	CLRF  index
+CC5X Version 3.1C,   File: D:\PRODUCT\1KW\PROGRAM\DBL.C 21. Jun 2001  17:35   Page 3
+
+ADDR CODE  LINE SOURCE
+
+           0121 			;		}
+           0122 			;		TMR2IF=0;
+001B 1283  0123 	BCF   0x03,RP0
+001C 108C  0124 	BCF   0x0C,TMR2IF
+           0125 			;	}
+           0126 			;				
+           0127 			;    	int_restore_registers // W, STATUS (and PCLATH)
+001D 1283  0128 m001	BCF   0x03,RP0
+001E 0823  0129 	MOVF  s3,W
+001F 008A  0130 	MOVWF PCLATH
+0020 0E22  0131 	SWAPF s2,W
+0021 0083  0132 	MOVWF STATUS
+0022 0EA0  0133 	SWAPF s1_save,1
+0023 0E20  0134 	SWAPF s1_save,W
+           0135 			;}
+0024 0009  0136 	RETFIE
+           0137 			;
+           0138 			;//***********************************************
+           0139 			;//     SPWM DATA TAB                            
+           0140 			;//     Generate by SPWMGEN V1.0                 
+           0141 			;//     Author:Fengjiantao                       
+           0142 			;//     http://fjt.yeah.net                      
+           0143 			;//     Email:fjt@371.net                        
+           0144 			;//     Carrier Index:150
+           0145 			;//     Modulation Index:95
+           0146 			;//     Pluse number:133
+           0147 			;//     MODE:Ë«¼«ÐÔ
+           0148 			;//************************************************
+           0149 			;unsigned char SPWMTAB(unsigned char tabindex)
+           0150 			;{
+           0151 SPWMTAB
+0025 1283  0152 	BCF   0x03,RP0
+0026 00A4  0153 	MOVWF tabindex
+           0154 			;     PCL+=W;
+0027 0782  0155 	ADDWF PCL,1
+           0156 			;          return 67;
+0028 3443  0157 	RETLW .67
+           0158 			;          return 70;
+0029 3446  0159 	RETLW .70
+           0160 			;          return 73;
+002A 3449  0161 	RETLW .73
+           0162 			;          return 75;
+002B 344B  0163 	RETLW .75
+           0164 			;          return 78;
+002C 344E  0165 	RETLW .78
+           0166 			;          return 80;
+002D 3450  0167 	RETLW .80
+           0168 			;          return 83;
+002E 3453  0169 	RETLW .83
+           0170 			;          return 86;
+002F 3456  0171 	RETLW .86
+           0172 			;          return 88;
+0030 3458  0173 	RETLW .88
+           0174 			;          return 90;
+0031 345A  0175 	RETLW .90
+           0176 			;          return 93;
+0032 345D  0177 	RETLW .93
+           0178 			;          return 95;
+0033 345F  0179 	RETLW .95
+           0180 			;          return 98;
+CC5X Version 3.1C,   File: D:\PRODUCT\1KW\PROGRAM\DBL.C 21. Jun 2001  17:35   Page 4
+
+ADDR CODE  LINE SOURCE
+
+0034 3462  0181 	RETLW .98
+           0182 			;          return 100;
+0035 3464  0183 	RETLW .100
+           0184 			;          return 102;
+0036 3466  0185 	RETLW .102
+           0186 			;          return 104;
+0037 3468  0187 	RETLW .104
+           0188 			;          return 106;
+0038 346A  0189 	RETLW .106
+           0190 			;          return 108;
+0039 346C  0191 	RETLW .108
+           0192 			;          return 110;
+003A 346E  0193 	RETLW .110
+           0194 			;          return 112;
+003B 3470  0195 	RETLW .112
+           0196 			;          return 114;
+003C 3472  0197 	RETLW .114
+           0198 			;          return 116;
+003D 3474  0199 	RETLW .116
+           0200 			;          return 117;
+003E 3475  0201 	RETLW .117
+           0202 			;          return 119;
+003F 3477  0203 	RETLW .119
+           0204 			;          return 120;
+0040 3478  0205 	RETLW .120
+           0206 			;          return 121;
+0041 3479  0207 	RETLW .121
+           0208 			;          return 123;
+0042 347B  0209 	RETLW .123
+           0210 			;          return 124;
+0043 347C  0211 	RETLW .124
+           0212 			;          return 125;
+0044 347D  0213 	RETLW .125
+           0214 			;          return 126;
+0045 347E  0215 	RETLW .126
+           0216 			;          return 126;
+0046 347E  0217 	RETLW .126
+           0218 			;          return 127;
+0047 347F  0219 	RETLW .127
+           0220 			;          return 128;
+0048 3480  0221 	RETLW .128
+           0222 			;          return 128;
+0049 3480  0223 	RETLW .128
+           0224 			;          return 129;
+004A 3481  0225 	RETLW .129
+           0226 			;          return 129;
+004B 3481  0227 	RETLW .129
+           0228 			;          return 129;
+004C 3481  0229 	RETLW .129
+           0230 			;          return 129;
+004D 3481  0231 	RETLW .129
+           0232 			;          return 129;
+004E 3481  0233 	RETLW .129
+           0234 			;          return 129;
+004F 3481  0235 	RETLW .129
+           0236 			;          return 129;
+0050 3481  0237 	RETLW .129
+           0238 			;          return 128;
+0051 3480  0239 	RETLW .128
+           0240 			;          return 128;
+CC5X Version 3.1C,   File: D:\PRODUCT\1KW\PROGRAM\DBL.C 21. Jun 2001  17:35   Page 5
+
+ADDR CODE  LINE SOURCE
+
+0052 3480  0241 	RETLW .128
+           0242 			;          return 127;
+0053 347F  0243 	RETLW .127
+           0244 			;          return 126;
+0054 347E  0245 	RETLW .126
+           0246 			;          return 126;
+0055 347E  0247 	RETLW .126
+           0248 			;          return 125;
+0056 347D  0249 	RETLW .125
+           0250 			;          return 124;
+0057 347C  0251 	RETLW .124
+           0252 			;          return 123;
+0058 347B  0253 	RETLW .123
+           0254 			;          return 121;
+0059 3479  0255 	RETLW .121
+           0256 			;          return 120;
+005A 3478  0257 	RETLW .120
+           0258 			;          return 119;
+005B 3477  0259 	RETLW .119
+           0260 			;          return 117;
+005C 3475  0261 	RETLW .117
+           0262 			;          return 116;
+005D 3474  0263 	RETLW .116
+           0264 			;          return 114;
+005E 3472  0265 	RETLW .114
+           0266 			;          return 112;
+005F 3470  0267 	RETLW .112
+           0268 			;          return 110;
+0060 346E  0269 	RETLW .110
+           0270 			;          return 108;
+0061 346C  0271 	RETLW .108
+           0272 			;          return 106;
+0062 346A  0273 	RETLW .106
+           0274 			;          return 104;
+0063 3468  0275 	RETLW .104
+           0276 			;          return 102;
+0064 3466  0277 	RETLW .102
+           0278 			;          return 100;
+0065 3464  0279 	RETLW .100
+           0280 			;          return 98;
+0066 3462  0281 	RETLW .98
+           0282 			;          return 95;
+0067 345F  0283 	RETLW .95
+           0284 			;          return 93;
+0068 345D  0285 	RETLW .93
+           0286 			;          return 90;
+0069 345A  0287 	RETLW .90
+           0288 			;          return 88;
+006A 3458  0289 	RETLW .88
+           0290 			;          return 86;
+006B 3456  0291 	RETLW .86
+           0292 			;          return 83;
+006C 3453  0293 	RETLW .83
+           0294 			;          return 80;
+006D 3450  0295 	RETLW .80
+           0296 			;          return 78;
+006E 344E  0297 	RETLW .78
+           0298 			;          return 75;
+006F 344B  0299 	RETLW .75
+           0300 			;          return 73;
+CC5X Version 3.1C,   File: D:\PRODUCT\1KW\PROGRAM\DBL.C 21. Jun 2001  17:35   Page 6
+
+ADDR CODE  LINE SOURCE
+
+0070 3449  0301 	RETLW .73
+           0302 			;          return 70;
+0071 3446  0303 	RETLW .70
+           0304 			;          return 67;
+0072 3443  0305 	RETLW .67
+           0306 			;          return 65;
+0073 3441  0307 	RETLW .65
+           0308 			;          return 62;
+0074 343E  0309 	RETLW .62
+           0310 			;          return 59;
+0075 343B  0311 	RETLW .59
+           0312 			;          return 57;
+0076 3439  0313 	RETLW .57
+           0314 			;          return 54;
+0077 3436  0315 	RETLW .54
+           0316 			;          return 52;
+0078 3434  0317 	RETLW .52
+           0318 			;          return 49;
+0079 3431  0319 	RETLW .49
+           0320 			;          return 46;
+007A 342E  0321 	RETLW .46
+           0322 			;          return 44;
+007B 342C  0323 	RETLW .44
+           0324 			;          return 42;
+007C 342A  0325 	RETLW .42
+           0326 			;          return 39;
+007D 3427  0327 	RETLW .39
+           0328 			;          return 37;
+007E 3425  0329 	RETLW .37
+           0330 			;          return 34;
+007F 3422  0331 	RETLW .34
+           0332 			;          return 32;
+0080 3420  0333 	RETLW .32
+           0334 			;          return 30;
+0081 341E  0335 	RETLW .30
+           0336 			;          return 28;
+0082 341C  0337 	RETLW .28
+           0338 			;          return 26;
+0083 341A  0339 	RETLW .26
+           0340 			;          return 24;
+0084 3418  0341 	RETLW .24
+           0342 			;          return 22;
+0085 3416  0343 	RETLW .22
+           0344 			;          return 20;
+0086 3414  0345 	RETLW .20
+           0346 			;          return 18;
+0087 3412  0347 	RETLW .18
+           0348 			;          return 16;
+0088 3410  0349 	RETLW .16
+           0350 			;          return 15;
+0089 340F  0351 	RETLW .15
+           0352 			;          return 13;
+008A 340D  0353 	RETLW .13
+           0354 			;          return 12;
+008B 340C  0355 	RETLW .12
+           0356 			;          return 11;
+008C 340B  0357 	RETLW .11
+           0358 			;          return 9;
+008D 3409  0359 	RETLW .9
+           0360 			;          return 8;
+CC5X Version 3.1C,   File: D:\PRODUCT\1KW\PROGRAM\DBL.C 21. Jun 2001  17:35   Page 7
+
+ADDR CODE  LINE SOURCE
+
+008E 3408  0361 	RETLW .8
+           0362 			;          return 7;
+008F 3407  0363 	RETLW .7
+           0364 			;          return 6;
+0090 3406  0365 	RETLW .6
+           0366 			;          return 6;
+0091 3406  0367 	RETLW .6
+           0368 			;          return 5;
+0092 3405  0369 	RETLW .5
+           0370 			;          return 4;
+0093 3404  0371 	RETLW .4
+           0372 			;          return 4;
+0094 3404  0373 	RETLW .4
+           0374 			;          return 3;
+0095 3403  0375 	RETLW .3
+           0376 			;          return 3;
+0096 3403  0377 	RETLW .3
+           0378 			;          return 3;
+0097 3403  0379 	RETLW .3
+           0380 			;          return 3;
+0098 3403  0381 	RETLW .3
+           0382 			;          return 3;
+0099 3403  0383 	RETLW .3
+           0384 			;          return 3;
+009A 3403  0385 	RETLW .3
+           0386 			;          return 3;
+009B 3403  0387 	RETLW .3
+           0388 			;          return 4;
+009C 3404  0389 	RETLW .4
+           0390 			;          return 4;
+009D 3404  0391 	RETLW .4
+           0392 			;          return 5;
+009E 3405  0393 	RETLW .5
+           0394 			;          return 6;
+009F 3406  0395 	RETLW .6
+           0396 			;          return 6;
+00A0 3406  0397 	RETLW .6
+           0398 			;          return 7;
+00A1 3407  0399 	RETLW .7
+           0400 			;          return 8;
+00A2 3408  0401 	RETLW .8
+           0402 			;          return 9;
+00A3 3409  0403 	RETLW .9
+           0404 			;          return 11;
+00A4 340B  0405 	RETLW .11
+           0406 			;          return 12;
+00A5 340C  0407 	RETLW .12
+           0408 			;          return 13;
+00A6 340D  0409 	RETLW .13
+           0410 			;          return 15;
+00A7 340F  0411 	RETLW .15
+           0412 			;          return 16;
+00A8 3410  0413 	RETLW .16
+           0414 			;          return 18;
+00A9 3412  0415 	RETLW .18
+           0416 			;          return 20;
+00AA 3414  0417 	RETLW .20
+           0418 			;          return 22;
+00AB 3416  0419 	RETLW .22
+           0420 			;          return 24;
+CC5X Version 3.1C,   File: D:\PRODUCT\1KW\PROGRAM\DBL.C 21. Jun 2001  17:35   Page 8
+
+ADDR CODE  LINE SOURCE
+
+00AC 3418  0421 	RETLW .24
+           0422 			;          return 26;
+00AD 341A  0423 	RETLW .26
+           0424 			;          return 28;
+00AE 341C  0425 	RETLW .28
+           0426 			;          return 30;
+00AF 341E  0427 	RETLW .30
+           0428 			;          return 32;
+00B0 3420  0429 	RETLW .32
+           0430 			;          return 34;
+00B1 3422  0431 	RETLW .34
+           0432 			;          return 37;
+00B2 3425  0433 	RETLW .37
+           0434 			;          return 39;
+00B3 3427  0435 	RETLW .39
+           0436 			;          return 42;
+00B4 342A  0437 	RETLW .42
+           0438 			;          return 44;
+00B5 342C  0439 	RETLW .44
+           0440 			;          return 46;
+00B6 342E  0441 	RETLW .46
+           0442 			;          return 49;
+00B7 3431  0443 	RETLW .49
+           0444 			;          return 52;
+00B8 3434  0445 	RETLW .52
+           0446 			;          return 54;
+00B9 3436  0447 	RETLW .54
+           0448 			;          return 57;
+00BA 3439  0449 	RETLW .57
+           0450 			;          return 59;
+00BB 343B  0451 	RETLW .59
+           0452 			;          return 62;
+00BC 343E  0453 	RETLW .62
+           0454 			;          return 65;
+00BD 3441  0455 	RETLW .65
+           0456 			;}
+           0457 			;
+           0458 			;void main(void)
+           0459 			;{
+           0460 main
+           0461 			;	union{
+           0462 			;		unsigned long s16;
+           0463 			;		char s8[2];
+           0464 			;	}sum;
+           0465 			;	char i;
+           0466 			;
+           0467 			;//	PORT CONFIGRATION
+           0468 			;	
+           0469 			;	TRISB=0xf;
+00BE 300F  0470 	MOVLW .15
+00BF 1683  0471 	BSF   0x03,RP0
+00C0 0086  0472 	MOVWF TRISB
+           0473 			;	PORTC=0;
+00C1 1283  0474 	BCF   0x03,RP0
+00C2 0187  0475 	CLRF  PORTC
+           0476 			;	TRISC=0xf0;
+00C3 30F0  0477 	MOVLW .240
+00C4 1683  0478 	BSF   0x03,RP0
+00C5 0087  0479 	MOVWF TRISC
+           0480 			;	LED_POWER=1;
+CC5X Version 3.1C,   File: D:\PRODUCT\1KW\PROGRAM\DBL.C 21. Jun 2001  17:35   Page 9
+
+ADDR CODE  LINE SOURCE
+
+00C6 1283  0481 	BCF   0x03,RP0
+00C7 1606  0482 	BSF   0x06,LED_POWER
+           0483 			;	LED_LVD=0;
+00C8 1286  0484 	BCF   0x06,LED_LVD
+           0485 			;	LED_WORK=0;
+00C9 1386  0486 	BCF   0x06,LED_WORK
+           0487 			;	LED_PROTECT=0;
+00CA 1306  0488 	BCF   0x06,LED_PROTECT
+           0489 			;
+           0490 			;//	Analog/Digital Converter Configuration
+           0491 			;	
+           0492 			;	ADCON1=0;
+00CB 1683  0493 	BSF   0x03,RP0
+00CC 019F  0494 	CLRF  ADCON1
+           0495 			;	
+           0496 			;//	PWM OUTPUT CONFIGURATION
+           0497 			;	
+           0498 			;	index=0;
+00CD 1283  0499 	BCF   0x03,RP0
+00CE 01A8  0500 	CLRF  index
+           0501 			;	CCPR1L=0;
+00CF 0195  0502 	CLRF  CCPR1L
+           0503 			;	CCPR2L=0;
+00D0 019B  0504 	CLRF  CCPR2L
+           0505 			;	PR2=132;	//PERIORD
+00D1 3084  0506 	MOVLW .132
+00D2 1683  0507 	BSF   0x03,RP0
+00D3 0092  0508 	MOVWF PR2
+           0509 			;	CCP1CON=0xc;
+00D4 300C  0510 	MOVLW .12
+00D5 1283  0511 	BCF   0x03,RP0
+00D6 0097  0512 	MOVWF CCP1CON
+           0513 			;	CCP2CON=0xc;
+00D7 300C  0514 	MOVLW .12
+00D8 009D  0515 	MOVWF CCP2CON
+           0516 			;	TMR2IE=1;
+00D9 1683  0517 	BSF   0x03,RP0
+00DA 148C  0518 	BSF   0x0C,TMR2IE
+           0519 			;	T2CON=4;
+00DB 3004  0520 	MOVLW .4
+00DC 1283  0521 	BCF   0x03,RP0
+00DD 0092  0522 	MOVWF T2CON
+           0523 			;	PEIE=1;
+00DE 170B  0524 	BSF   0x0B,PEIE
+           0525 			;	ADIE=0;
+00DF 1683  0526 	BSF   0x03,RP0
+00E0 130C  0527 	BCF   0x0C,ADIE
+           0528 			;	GIE=1;
+00E1 178B  0529 	BSF   0x0B,GIE
+           0530 			;	
+           0531 			;	LED_WORK=1;
+00E2 1283  0532 	BCF   0x03,RP0
+00E3 1786  0533 	BSF   0x06,LED_WORK
+           0534 			;	
+           0535 			;	while(1){
+           0536 			;		sum.s16=0;
+00E4 1283  0537 m002	BCF   0x03,RP0
+00E5 01A5  0538 	CLRF  sum
+00E6 01A6  0539 	CLRF  sum+1
+           0540 			;		ADCON0=0x81;
+CC5X Version 3.1C,   File: D:\PRODUCT\1KW\PROGRAM\DBL.C 21. Jun 2001  17:35   Page 10
+
+ADDR CODE  LINE SOURCE
+
+00E7 3081  0541 	MOVLW .129
+00E8 009F  0542 	MOVWF ADCON0
+           0543 			;		clrwdt();
+00E9 0064  0544 	CLRWDT
+           0545 			;		clrwdt();
+00EA 0064  0546 	CLRWDT
+           0547 			;		clrwdt();
+00EB 0064  0548 	CLRWDT
+           0549 			;		clrwdt();
+00EC 0064  0550 	CLRWDT
+           0551 			;		i=0;
+00ED 01A7  0552 	CLRF  i
+           0553 			;		do{
+           0554 			;			clrwdt();
+00EE 0064  0555 m003	CLRWDT
+           0556 			;			clrwdt();
+00EF 0064  0557 	CLRWDT
+           0558 			;			clrwdt();
+00F0 0064  0559 	CLRWDT
+           0560 			;			clrwdt();
+00F1 0064  0561 	CLRWDT
+           0562 			;			GO=1;
+00F2 1283  0563 	BCF   0x03,RP0
+00F3 151F  0564 	BSF   0x1F,GO
+           0565 			;			while(GO);
+00F4 1283  0566 m004	BCF   0x03,RP0
+00F5 191F  0567 	BTFSC 0x1F,GO
+00F6 28F4  0568 	GOTO  m004
+           0569 			;			sum.s16+=ADRES;
+00F7 1283  0570 	BCF   0x03,RP0
+00F8 081E  0571 	MOVF  ADRES,W
+00F9 07A5  0572 	ADDWF sum,1
+00FA 1803  0573 	BTFSC 0x03,Carry
+00FB 0AA6  0574 	INCF  sum+1,1
+           0575 			;			i++;
+00FC 0FA7  0576 	INCFSZ i,1
+           0577 			;		}while(i!=0);
+00FD 28EE  0578 	GOTO  m003
+           0579 			;		if(sum.s8[1]<LVD){
+00FE 30C8  0580 	MOVLW .200
+00FF 0226  0581 	SUBWF sum+1,W
+0100 1803  0582 	BTFSC 0x03,Carry
+0101 2902  0583 	GOTO  m005
+           0584 			;//			GIE=0;
+           0585 			;//			CCP1CON=0;
+           0586 			;//			PWM1=0;
+           0587 			;//			CCP2CON=0;
+           0588 			;//			PWM2=1;
+           0589 			;//			LED_WORK=0;
+           0590 			;//			LED_LVD=1;
+           0591 			;//			while(1);
+           0592 			;		}
+           0593 			;		sum.s16=0;
+0102 1283  0594 m005	BCF   0x03,RP0
+0103 01A5  0595 	CLRF  sum
+0104 01A6  0596 	CLRF  sum+1
+           0597 			;		ADCON0=0x91;
+0105 3091  0598 	MOVLW .145
+0106 009F  0599 	MOVWF ADCON0
+           0600 			;		clrwdt();
+CC5X Version 3.1C,   File: D:\PRODUCT\1KW\PROGRAM\DBL.C 21. Jun 2001  17:35   Page 11
+
+ADDR CODE  LINE SOURCE
+
+0107 0064  0601 	CLRWDT
+           0602 			;		clrwdt();
+0108 0064  0603 	CLRWDT
+           0604 			;		clrwdt();
+0109 0064  0605 	CLRWDT
+           0606 			;		clrwdt();
+010A 0064  0607 	CLRWDT
+           0608 			;		i=0;
+010B 01A7  0609 	CLRF  i
+           0610 			;		do{
+           0611 			;			clrwdt();
+010C 0064  0612 m006	CLRWDT
+           0613 			;			clrwdt();
+010D 0064  0614 	CLRWDT
+           0615 			;			clrwdt();
+010E 0064  0616 	CLRWDT
+           0617 			;			clrwdt();
+010F 0064  0618 	CLRWDT
+           0619 			;//			GO=1;
+           0620 			;//			while(GO);
+           0621 			;			sum.s16+=ADRES;
+0110 1283  0622 	BCF   0x03,RP0
+0111 081E  0623 	MOVF  ADRES,W
+0112 07A5  0624 	ADDWF sum,1
+0113 1803  0625 	BTFSC 0x03,Carry
+0114 0AA6  0626 	INCF  sum+1,1
+           0627 			;			i++;
+0115 0FA7  0628 	INCFSZ i,1
+           0629 			;		}while(i!=0);
+0116 290C  0630 	GOTO  m006
+           0631 			;		if(sum.s8[1]>PRESET){
+0117 30C9  0632 	MOVLW .201
+0118 0226  0633 	SUBWF sum+1,W
+0119 1C03  0634 	BTFSS 0x03,Carry
+011A 28E4  0635 	GOTO  m002
+           0636 			;			GIE=0;
+011B 138B  0637 	BCF   0x0B,GIE
+           0638 			;//			CCP1CON=0;
+           0639 			;//			PWM1=0;
+           0640 			;//			CCP2CON=0;
+           0641 			;//			PWM2=1;
+           0642 			;//			LED_WORK=0;
+           0643 			;//			LED_PROTECT=1;
+           0644 			;//			while(1);
+           0645 			;		}
+           0646 			;	}
+011C 28E4  0647 	GOTO  m002
+           0648 
+     0000  0649 	END

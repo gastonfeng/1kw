@@ -1,0 +1,6 @@
+* source FILTER
+L_L1         N000050 N00034  1.3mH  
+C_C1         0 N00034  10uF  
+V_V2         N00028 0   PWL   
++ FILE "dspwm.stl" 
+R_R1         N00028 N000050  1  

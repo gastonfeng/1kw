@@ -1,0 +1,20 @@
+* D:\product\1kW\sim\SPWM.stl written on Tue Feb 06 03:49:54 2001
+* by Stimulus Editor -- Serial Number: 0 -- Version 9.1
+;!Stimulus Get
+;! pwm Analog
+;!Ok
+;!Plot Axis_Settings
+;!Xrange 0s 1ms
+;!Yrange 0 1
+;!AutoUniverse
+;!XminRes 1us
+;!YminRes 1
+;!Ok
+.STIMULUS pwm PWL
++ TIME_SCALE_FACTOR = 1
++ VALUE_SCALE_FACTOR = 1
++   ( 0, 0 )
++   ( 0.00015, 1 )
++   ( 0.0003, 1 )
++   ( 0.000301, 0 )
++   ( 0.00045, 0 )

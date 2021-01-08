@@ -1,0 +1,12 @@
+* source CT
+I_I1         N00197 0 DC 0Adc AC 0Aac
++PULSE 30A -30A 0 1us 1us 25us 50us
+L_L1         N00197 0  14.7uH  
+L_L2         N00102 N00178  317mH  
+D_D1         N00102 N00203 D1N4148 
+D_D2         0 N00102 D1N4148 
+D_D3         0 N00178 D1N4148 
+D_D4         N00178 N00203 D1N4148 
+R_R2         0 N00203  10  
+C_C1         N00203 0  10uF  
+Kn_K1         L_L1 L_L2     1 

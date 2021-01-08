@@ -1,0 +1,26 @@
+CC5X Version 3.1C, Copyright (c) B Knudsen Data, Norway 1992-2001
+ --> FREE edition, 8-16 bit int, 24 bit float, 1k code, reduced optim.
+D:\PRODUCT\1KW\PROGRAM\DBL.C:
+ 21. Jun 2001  17:35
+ Chip = 16C73A
+ RAM: 00h : -------- -------- -------- --------
+ RAM: 20h : -======= .******* ******** ********
+ RAM: 40h : ******** ******** ******** ********
+ RAM: 60h : ******** ******** ******** ********
+ RAM: 80h : -------- -------- -------- --------
+ RAM: A0h : -******* ******** ******** ********
+ RAM: C0h : ******** ******** ******** ********
+ RAM: E0h : ******** ******** ******** ********
+RAM usage: 10 bytes (7 local), 182 bytes free
+ File 'DBL.fcs'
+ Optimizing - removed 6 instructions (-2 %)
+ File 'DBL.var'
+ File 'DBL.asm'
+ File 'DBL.lst'
+ File 'DBL.cod'
+ File 'DBL.occ'
+ Codepage 0 has  282 word(s) :  13 %
+ Codepage 1 has    0 word(s) :   0 %
+ File 'DBL.hex'
+Total of 282 code words (6 %)
+ * Estimated CODE SIZE of licensed edition: 271 code words (-11)

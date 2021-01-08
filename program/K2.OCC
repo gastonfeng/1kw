@@ -1,0 +1,24 @@
+CC5X Version 3.0G, Copyright (c) B. Knudsen Data, Norway 1992-2000
+ --> FREE edition, 8-16 bit int, 1k code, reduced optim.
+D:\PRODUCT\1KW\PROGRAM\K2.C:
+  8. Feb 2001   1:53
+ Chip = 16C73A
+ RAM: 00h : -------- -------- -------- --------
+ RAM: 20h : -===4.** ******** ******** ********
+ RAM: 40h : ******** ******** ******** ********
+ RAM: 60h : ******** ******** ******** ********
+ RAM: 80h : -------- -------- -------- --------
+ RAM: A0h : -******* ******** ******** ********
+ RAM: C0h : ******** ******** ******** ********
+ RAM: E0h : ******** ******** ******** ********
+ File 'K2.fcs'
+ Optimizing - removed 1 instructions (-0 %)
+ File 'K2.var'
+ File 'K2.asm'
+ File 'K2.lst'
+ File 'K2.cod'
+ File 'K2.occ'
+ Codepage 0 has  253 word(s) :  12 %
+ Codepage 1 has    0 word(s) :   0 %
+ File 'K2.hex'
+Total of 250 instructions (6 %)

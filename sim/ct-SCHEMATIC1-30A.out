@@ -1,0 +1,96 @@
+
+**** 02/16/01 01:59:02 ********* PSpice 9.1 (Mar 1999) ******** ID# 0 ********
+
+ ** circuit file for profile: 30A 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT PROFILES
+
+*Libraries: 
+* Local Libraries :
+* From [PSPICE NETLIST] section of pspice91.ini file:
+.lib "D:\my_lib\orcad.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.DC LIN I_I1 0 30A 1A 
+.PROBE 
+.INC "ct-SCHEMATIC1.net" 
+
+
+**** INCLUDING ct-SCHEMATIC1.net ****
+* source CT
+I_I1         N00197 0 DC 0Adc AC 0Aac
++PULSE 30A -30A 0 1us 1us 25us 50us
+L_L1         N00197 0  14.7uH  
+L_L2         N00102 N00178  317mH  
+D_D1         N00102 N00203 D1N4148 
+D_D2         0 N00102 D1N4148 
+D_D3         0 N00178 D1N4148 
+D_D4         N00178 N00203 D1N4148 
+R_R2         0 N00203  10  
+C_C1         N00203 0  10uF  
+Kn_K1         L_L1 L_L2     1 
+
+**** RESUMING ct-SCHEMATIC1-30A.sim.cir ****
+.INC "ct-SCHEMATIC1.als"
+
+
+
+**** INCLUDING ct-SCHEMATIC1.als ****
+.ALIASES
+I_I1            I1(+=N00197 -=0 )
+L_L1            L1(1=N00197 2=0 )
+L_L2            L2(1=N00102 2=N00178 )
+D_D1            D1(1=N00102 2=N00203 )
+D_D2            D2(1=0 2=N00102 )
+D_D3            D3(1=0 2=N00178 )
+D_D4            D4(1=N00178 2=N00203 )
+R_R2            R2(1=0 2=N00203 )
+C_C1            C1(+=N00203 -=0 )
+Kn_K1            K1()
+.ENDALIASES
+
+**** RESUMING ct-SCHEMATIC1-30A.sim.cir ****
+.END
+
+**** 02/16/01 01:59:02 ********* PSpice 9.1 (Mar 1999) ******** ID# 0 ********
+
+ ** circuit file for profile: 30A 
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               D1N4148         
+          IS    2.682000E-09 
+           N    1.836        
+         ISR    1.565000E-09 
+         IKF     .04417      
+          BV  100            
+         IBV  100.000000E-06 
+          RS     .5664       
+          TT   11.540000E-09 
+         CJO    4.000000E-12 
+          VJ     .5          
+           M     .3333       
+
+
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME             .34
+

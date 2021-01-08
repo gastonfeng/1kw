@@ -1,0 +1,9 @@
+* source DRIVER
+V_V2         N00045 0  
++PULSE -10 10 5us 0 0 
+L_L1         N00111 0  400uH  
+L_L2         0 N00051  400uH  
+R_R1         N00051 N00054  22  
+C_C1         0 N00054  3n  
+Kn_K1         L_L1 L_L2     1 
+R_R2         N00045 N00111  10  

@@ -1,0 +1,14 @@
+* OSC.stl written on Tue Nov 03 07:23:46 1998
+* by Stimulus Editor -- Serial Number: 2 -- Version 9.0
+;!Stimulus Get
+;! Reset Digital
+;!Ok
+;!Plot Axis_Settings
+;!Xrange 0s 1us
+;!AutoUniverse
+;!XminRes 1ns
+;!YminRes 1n
+;!Ok
+.STIMULUS Reset STIM (1, 1)
++   +0s 1
++   100ns 0

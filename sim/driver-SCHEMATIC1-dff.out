@@ -1,0 +1,91 @@
+
+**** 02/04/01 04:28:36 ********* PSpice 9.1 (Mar 1999) ******** ID# 0 ********
+
+ ** circuit file for profile: dff 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT PROFILES
+
+*Libraries: 
+* Local Libraries :
+* From [PSPICE NETLIST] section of pspice91.ini file:
+.lib "D:\my_lib\orcad.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 30us 0 
+.PROBE 
+.INC "driver-SCHEMATIC1.net" 
+
+
+**** INCLUDING driver-SCHEMATIC1.net ****
+* source DRIVER
+V_V2         N00045 0  
++PULSE -10 10 5us 0 0 
+L_L1         N00111 0  400uH  
+L_L2         0 N00051  400uH  
+R_R1         N00051 N00054  22  
+C_C1         0 N00054  3n  
+Kn_K1         L_L1 L_L2     1 
+R_R2         N00045 N00111  10  
+
+**** RESUMING driver-schematic1-dff.sim.cir ****
+.INC "driver-SCHEMATIC1.als"
+
+
+
+**** INCLUDING driver-SCHEMATIC1.als ****
+.ALIASES
+V_V2            V2(+=N00045 -=0 )
+L_L1            L1(1=N00111 2=0 )
+L_L2            L2(1=0 2=N00051 )
+R_R1            R1(1=N00051 2=N00054 )
+C_C1            C1(1=0 2=N00054 )
+Kn_K1            K1()
+R_R2            R2(1=N00045 2=N00111 )
+.ENDALIASES
+
+**** RESUMING driver-schematic1-dff.sim.cir ****
+.END
+
+**** 02/04/01 04:28:36 ********* PSpice 9.1 (Mar 1999) ******** ID# 0 ********
+
+ ** circuit file for profile: dff 
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(N00045)  -10.0000 (N00051)    0.0000 (N00054)    0.0000 (N00111)    0.0000 
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V2         1.000E+00
+
+    TOTAL POWER DISSIPATION   1.00E+01  WATTS
+
+
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME             .37
+

@@ -1,0 +1,20 @@
+** circuit file for profile: ppp 
+
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT PROFILES
+
+*Libraries: 
+* Local Libraries :
+.STMLIB ".\pwm.stl" 
+* From [PSPICE NETLIST] section of pspice91.ini file:
+.lib "D:\my_lib\orcad.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 20ms 0 
+.PROBE 
+.INC "filter-SCHEMATIC1.net" 
+
+.INC "filter-SCHEMATIC1.als"
+
+
+.END

@@ -1,0 +1,71 @@
+(ExpressProject "3525"
+  (ProjectVersion "19981106")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library"
+      (File "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\analog.olb"
+        (Type "Schematic Library"))
+      (File "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\source.olb"
+        (Type "Schematic Library"))
+      (File "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\sourcstm.olb"
+        (Type "Schematic Library"))
+      (File "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\special.olb"
+        (Type "Schematic Library"))
+      (File "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\swit_rav.olb"
+        (Type "Schematic Library"))
+      (File "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\swit_reg.olb"
+        (Type "Schematic Library")))
+    (NoModify)
+    (File ".\3525.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x"))
+  (Folder "Outputs"
+    (File ".\3525-schematic1.net"
+      (Type "Report")))
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles"
+      (ActiveProfile ".\3525-schematic1-dricer.sim")
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\3525-schematic1-dricer.sim"
+        (DisplayName "SCHEMATIC1-dricer")
+        (Type "PSpice Profile")))
+    (Folder "Model Libraries"
+      (Sort User))
+    (Folder "Stimulus Files"
+      (Sort User))
+    (Folder "Include Files"
+      (Sort User)))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Design Resources" "Library")
+      (Path "Outputs")
+      (Path "PSpice Resources")
+      (Path "PSpice Resources" "Simulation Profiles"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -4 -23 0 200 0 422"))
+      (Tab 0))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 2 3 -1 -1 -4 -23 44 856 44 493")
+        (Scroll "94 188")
+        (Zoom "127")
+        (Occurrence "/"))
+      (Path "D:\PRODUCT\1KW\SIM\3525.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "PAGE1")))
+  (PartMRUSelector
+    (C
+      (FullPartName "C.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (R
+      (FullPartName "R.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))))

@@ -1,0 +1,36 @@
+* source 3525
+C_C5         0 N02296  3n  
+X_U1         N00086 N00132 N00144 N00107 N00089 N00041 0 N00179 N00055 N00179
++  N00129 SG1525A/25C 
++ PARAMS: PERIOD=5us DEADTIME=0.5us
+R_R5         N00041 N00044  10  
+R_R6         N00089 N00086  1k  
+R_R4         0 N00104  1k  
+R_R7         N00107 N00083  1k  
+R_R2         N00132 N00129  1k  
+R_R1         0 N00144  1k  
+R_R3         N00207 N00210  22  
+Kn_K1         L_L1 L_L2 
++ L_L3    0.99 
+R_R8         N00219 N00222  22  
+L_L2         N00044 N00055  200uH  
+V_V1         N00179 0 15Vdc
+L_L1         0 N00207  200uH  
+L_L3         N00219 0  200uH  
+D_D1         N00044 N00179 D1N4148 
+D_D3         0 N00044 D1N4148 
+D_D4         0 N00055 D1N4148 
+D_D2         N00055 N00179 D1N4148 
+C_C2         0 N00210  3n  
+C_C3         0 N00222  3n  
+C_C1         N00107 0  1n  
+R_R11         N02893 N00207  100  
+R_R12         N02899 N00219  100  
+R_R9         N00207 N02210  22  
+C_C6         0 N02893  10n  
+R_R10         N00219 N02296  22  
+C_C7         0 N02899  10n  
+C_C4         0 N02210  3n  
+** Floating/unmodeled pin fixups **
+R__UC0001   N00104  0   {1/GMIN}
+R__UC0002   N00083  0   {1/GMIN}

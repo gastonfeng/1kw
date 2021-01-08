@@ -1,0 +1,168 @@
+
+**** 02/11/01 02:47:20 ********* PSpice 9.1 (Mar 1999) ******** ID# 0 ********
+
+ ** circuit file for profile: dead 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT PROFILES
+
+*Libraries: 
+* Local Libraries :
+* From [PSPICE NETLIST] section of pspice91.ini file:
+.lib "D:\my_lib\orcad.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 200us 0 
+.PROBE 
+.INC "deadtime-SCHEMATIC1.net" 
+
+
+**** INCLUDING deadtime-SCHEMATIC1.net ****
+* source DEADTIME
+V_V1         N00018 0  
++PULSE 0 4V 0 .1us .1us 30us 60us
+D_D1         N00025 N00018 D1N4148 
+R_R1         N00018 N00025  1k  
+C_C1         0 N00025  10n  
+R_R2         N000131 N00087  1k  
+V_V2         N00087 0 5Vdc
+X_U2         N002240 0 N000131 0 PS2501 PARAMS: REL_CTR=1
+R_R6         N00018 N003880  1k  
+X_U3         N00087 N003880 N003903 0 PS2501 PARAMS: REL_CTR=1
+R_R7         N003903 N00087  1k  
+R_R4         N00025 N002240  1k  
+
+**** RESUMING deadtime-schematic1-dead.sim.cir ****
+.INC "deadtime-SCHEMATIC1.als"
+
+
+
+**** INCLUDING deadtime-SCHEMATIC1.als ****
+.ALIASES
+V_V1            V1(+=N00018 -=0 )
+D_D1            D1(1=N00025 2=N00018 )
+R_R1            R1(1=N00018 2=N00025 )
+C_C1            C1(1=0 2=N00025 )
+R_R2            R2(1=N000131 2=N00087 )
+V_V2            V2(+=N00087 -=0 )
+X_U2            U2(A=N002240 K=0 C=N000131 E=0 )
+R_R6            R6(1=N00018 2=N003880 )
+X_U3            U3(A=N00087 K=N003880 C=N003903 E=0 )
+R_R7            R7(1=N003903 2=N00087 )
+R_R4            R4(1=N00025 2=N002240 )
+.ENDALIASES
+
+**** RESUMING deadtime-schematic1-dead.sim.cir ****
+.END
+
+**** 02/11/01 02:47:20 ********* PSpice 9.1 (Mar 1999) ******** ID# 0 ********
+
+ ** circuit file for profile: dead 
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               D1N4148         X_U2.Demit      X_U3.Demit      
+          IS    2.682000E-09    1.000000E-12    1.000000E-12 
+           N    1.836           1.999644        1.999644     
+         ISR    1.565000E-09                                 
+         IKF     .04417                                      
+          BV  100               6               6            
+         IBV  100.000000E-06   10.000000E-06   10.000000E-06 
+          RS     .5664                                       
+          TT   11.540000E-09  500.000000E-09  500.000000E-09 
+         CJO    4.000000E-12   50.000000E-12   50.000000E-12 
+          VJ     .5                                          
+           M     .3333                                       
+          EG                    1.424           1.424        
+
+
+**** 02/11/01 02:47:20 ********* PSpice 9.1 (Mar 1999) ******** ID# 0 ********
+
+ ** circuit file for profile: dead 
+
+
+ ****     BJT MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U2.Qdtect     X_U3.Qdtect     
+               NPN             NPN             
+          IS  100.000000E-12  100.000000E-12 
+          BF  100             100            
+          NF    1.3             1.3          
+         VAF  100             100            
+          BR   50              50            
+          NR    1               1            
+         CJE   10.000000E-12   10.000000E-12 
+         CJC   10.000000E-12   10.000000E-12 
+         CJS    1.000000E-12    1.000000E-12 
+          TF  100.000000E-12  100.000000E-12 
+          TR  220.000000E-09  220.000000E-09 
+          CN    2.42            2.42         
+           D     .87             .87         
+
+
+**** 02/11/01 02:47:20 ********* PSpice 9.1 (Mar 1999) ******** ID# 0 ********
+
+ ** circuit file for profile: dead 
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(N00018)    0.0000 (N00025)-371.2E-24 (N00087)    5.0000 (X_U2.B)     .0241     
+
+(X_U2.D)    0.0000 (X_U2.R) 59.26E-30 (X_U2.T) 59.26E-30 (X_U3.B)     .6079     
+
+(X_U3.D)    3.8584 (X_U3.R)     .0039 (X_U3.T)     .0039 (N000131)    5.0000    
+
+(N002240)-371.3E-24                   (N003880)    3.8584                       
+
+(N003903)     .1692                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1         3.858E-03
+    V_V2        -8.689E-03
+    X_U2.Vsense   5.926E-29
+    X_U3.Vsense   3.858E-03
+
+    TOTAL POWER DISSIPATION   4.34E-02  WATTS
+
+
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME            2.02
+

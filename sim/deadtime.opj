@@ -1,0 +1,86 @@
+(ExpressProject "deadtime"
+  (ProjectVersion "19981106")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library"
+      (File "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\analog.olb"
+        (Type "Schematic Library"))
+      (File "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\source.olb"
+        (Type "Schematic Library"))
+      (File "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\sourcstm.olb"
+        (Type "Schematic Library"))
+      (File "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\special.olb"
+        (Type "Schematic Library")))
+    (NoModify)
+    (File ".\deadtime.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x"))
+  (Folder "Outputs"
+    (File ".\deadtime-schematic1.net"
+      (Type "Report")))
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles"
+      (ActiveProfile ".\deadtime-schematic1-dead.sim")
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\deadtime-schematic1-dead.sim"
+        (DisplayName "SCHEMATIC1-dead")
+        (Type "PSpice Profile")))
+    (Folder "Model Libraries"
+      (Sort User))
+    (Folder "Stimulus Files"
+      (Sort User))
+    (Folder "Include Files"
+      (Sort User)))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (PartMRUSelector
+    (D1N4148
+      (FullPartName "D1N4148.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\DIODE.OLB")
+      (DeviceIndex "0"))
+    (R
+      (FullPartName "R.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (PS2501-1
+      (FullPartName "PS2501-1.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\OPTO.OLB")
+      (DeviceIndex "0"))
+    (C
+      (FullPartName "C.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (VDC
+      (FullPartName "VDC.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (A4N25
+      (FullPartName "A4N25.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\OPTO.OLB")
+      (DeviceIndex "0"))
+    (VPULSE
+      (FullPartName "VPULSE.Normal")
+      (LibraryName "C:\PROGRAM FILES\ORCAD\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0")))
+  (LastUsedLibraryBrowseDirectory
+     "C:\Program Files\OrCAD\CAPTURE\LIBRARY\PSPICE")
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Outputs"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -4 -23 0 200 0 328"))
+      (Tab 0))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 2 3 -1 -1 -4 -23 44 690 44 369")
+        (Scroll "0 0")
+        (Zoom "100")
+        (Occurrence "/"))
+      (Path "D:\PRODUCT\1KW\SIM\DEADTIME.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "PAGE1"))))

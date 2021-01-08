@@ -1,0 +1,162 @@
+
+MPLAB-C "C" COMPILER V1.10 Released                                     PAGE  1
+
+
+                                  /**********************************************
+                                  *   Filename: main.c
+                                  *   Project:  2k1.pjt
+                                  *   Product name: 1kW sin waveform inverter
+                                  ***********************************************
+                                  *
+                                  *   Author:     Feng Jiantao
+                                  *   Date:     2001.01.22
+                                  *   Compiled Using CC5Xfree package
+                                  *
+                                  **********************************************/
+
+0001                              #define OPEN_LOOP
+                                  //#define   FEEDBACK
+
+0002                              #define F50Hz
+                                  //#define F60Hz
+
+                                  #include <16C73A.H>
+#include <16C73A.H> 
+        ^
+Error INCLUDE FILE NOT FOUND 16C73A.H
+                                  #include <int16cxx.H>
+#include <int16cxx.H> 
+        ^
+Error INCLUDE FILE NOT FOUND int16cxx.H
+                                  //#include "spwmtab.C"
+
+0096                              #define SPWMCOUNT 150
+
+                                  bit intflag,neg,front,change;
+bit intflag,neg,front,change; 
+           ^
+Error EXPECTED  ,;([@=
+bit intflag,neg,front,change; 
+           ^
+Error EXPECTED  , got g
+bit intflag,neg,front,change; 
+                             ^
+Error RAM ADDRESS OUT OF RANGE Out of RAM space
+                                  unsigned char index;
+unsigned char index; 
+                    ^
+Error RAM ADDRESS OUT OF RANGE Out of RAM space
+
+                                  #pragma bit PWMHR @ 7.0
+#pragma bit PWMHR @ 7.0 
+           ^
+Error ILLEGAL # OPTION:  bit
+                                  #pragma bit PWMLL @ 7.1     //CCP2
+                                  #pragma bit PWMLR @ 7.2     //CCP1
+                                  #pragma bit PWMHL @ 7.3
+
+                                  #pragma bit LED_POWER   @  6.4
+                                  #pragma bit LED_LVD @ 6.5
+
+MPLAB-C "C" COMPILER V1.10 Released                                     PAGE  2
+
+
+                                  #pragma bit LED_PROTECT @ 6.6
+                                  #pragma bit LED_WORK    @ 6.7
+
+                                  unsigned char SPWMTAB(unsigned char tabindex);
+
+                                  #pragma origin = 4
+#pragma origin = 4 
+              ^
+Error ILLEGAL # OPTION:  origin
+
+                                  interrupt int_server( void)
+                                  {
+                                          int_save_registers    // W, STATUS (and PCLATH)
+                                      intflag=1;
+                                      if(TMR2IF){
+ if(TMR2IF){ 
+            ^
+Error LABEL NOT DEFINED TMR2IF
+                                         if(neg){
+  if(neg){ 
+        ^
+Error ILLEGAL OR UNDEFINED ARGUMENT neg .. 6
+                                           CCPR1L=SPWMTAB(index);
+                                           if(change){
+   if(change){ 
+     ^
+Error EXPECTED  )
+0028 B300    IORLW  00h
+0029 9A04    BTFSC  ALUSTA,2
+002A C02B    GOTO   002Bh         
+   if(change){ 
+            ^
+Error ILLEGAL OR UNDEFINED ARGUMENT change .. 6
+                                  //          while(PWMLL);
+                                            PWMHR=0;
+    PWMHR=0; 
+             ^
+Error EXPECTED  ')'
+                                            PWMLL=0;
+    PWMLL=0; 
+         ^
+Error ILLEGAL TERMINATOR FOUND "PWMLL"
+                                            CCP2CON=0;
+    CCP2CON=0; 
+           ^
+Error ILLEGAL OR UNDEFINED ARGUMENT CCP2CON .. 6
+                                            CCP1CON=0xc;
+    CCP1CON=0xc; 
+           ^
+Error ILLEGAL OR UNDEFINED ARGUMENT CCP1CON .. 6
+                                            PWMHL=1;
+    PWMHL=1; 
+         ^
+Error ILLEGAL OR UNDEFINED ARGUMENT PWMHL .. 6
+                                            change=0;
+
+MPLAB-C "C" COMPILER V1.10 Released                                     PAGE  3
+
+
+    change=0; 
+          ^
+Error ILLEGAL OR UNDEFINED ARGUMENT change .. 6
+002B B000    MOVLW  00h                    }
+002C 0002    RETURN 
+                                           index++;
+   index++; 
+          ^
+Error EXPECTED  ,;([@=
+   index++; 
+          ^
+Error EXPECTED  , got +
+   index++; 
+          ^
+Error RAM ADDRESS OUT OF RANGE Out of RAM space
+
+MPLAB-C "C" COMPILER V1.10 Released                                     PAGE  4
+
+
+
+
+SYMBOL TABLE
+
+LABEL                            VALUE  LABEL                            VALUE  
+
+SPWMCOUNT                        0096 | __MPC                            0000 
+__STARTUP                        0000 | index                            0019 
+
+
+
+ROM USAGE MAP 
+
+    0028 to 002C
+    Total ROM used 0005
+
+
+Errors             :   21
+Warnings           :    0
+
+

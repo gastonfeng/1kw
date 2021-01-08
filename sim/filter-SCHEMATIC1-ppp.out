@@ -1,0 +1,86 @@
+
+**** 02/13/01 03:43:08 ********* PSpice 9.1 (Mar 1999) ******** ID# 0 ********
+
+ ** circuit file for profile: ppp 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT PROFILES
+
+*Libraries: 
+* Local Libraries :
+.STMLIB ".\pwm.stl" 
+* From [PSPICE NETLIST] section of pspice91.ini file:
+.lib "D:\my_lib\orcad.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 20ms 0 
+.PROBE 
+.INC "filter-SCHEMATIC1.net" 
+
+
+**** INCLUDING filter-SCHEMATIC1.net ****
+* source FILTER
+L_L1         N000050 N00034  1.3mH  
+C_C1         0 N00034  10uF  
+V_V2         N00028 0   PWL   
++ FILE "dspwm.stl" 
+R_R1         N00028 N000050  1  
+
+**** RESUMING filter-schematic1-ppp.sim.cir ****
+.INC "filter-SCHEMATIC1.als"
+
+
+
+**** INCLUDING filter-SCHEMATIC1.als ****
+.ALIASES
+L_L1            L1(1=N000050 2=N00034 )
+C_C1            C1(1=0 2=N00034 )
+V_V2            V2(+=N00028 -=0 )
+R_R1            R1(1=N00028 2=N000050 )
+.ENDALIASES
+
+**** RESUMING filter-schematic1-ppp.sim.cir ****
+.END
+
+**** 02/13/01 03:43:08 ********* PSpice 9.1 (Mar 1999) ******** ID# 0 ********
+
+ ** circuit file for profile: ppp 
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(N00028)    0.0000 (N00034)    0.0000 (N000050)    0.0000                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V2         0.000E+00
+
+    TOTAL POWER DISSIPATION   0.00E+00  WATTS
+
+
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME            6.88
+

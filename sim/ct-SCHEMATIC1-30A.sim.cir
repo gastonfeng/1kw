@@ -1,0 +1,19 @@
+** circuit file for profile: 30A 
+
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT PROFILES
+
+*Libraries: 
+* Local Libraries :
+* From [PSPICE NETLIST] section of pspice91.ini file:
+.lib "D:\my_lib\orcad.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.DC LIN I_I1 0 30A 1A 
+.PROBE 
+.INC "ct-SCHEMATIC1.net" 
+
+.INC "ct-SCHEMATIC1.als"
+
+
+.END
